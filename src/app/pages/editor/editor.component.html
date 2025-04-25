@@ -1,0 +1,19 @@
+<div class="container">
+    <!-- 编辑器 -->
+    <div class="editor-area">
+        <h2 style="margin-top: 0;">📝Markdown 编辑器</h2>
+        <textarea placeholder="输入 Markdown 内容..." #markdown_input></textarea>
+    </div>
+
+    <!-- 预览 -->
+    <div class="preview-area">
+        <button class="copy-btn" onclick="copyPreviewContent()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M8 4v12h12V4H8z" stroke-linejoin="round" />
+                <path d="M4 8h12V20H4z" />
+            </svg>
+            复制内容
+        </button>
+        <div #preview></div>
+    </div>
+</div>
