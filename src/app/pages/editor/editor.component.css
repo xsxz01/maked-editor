@@ -78,22 +78,9 @@ body {
 }
 
 /* 预览内容样式 */
-#preview > h1 {
-    border-bottom: 2px solid #eee;
-    color: #45a049;
-}
-
-#preview pre {
-    background: #f8f8f8;
-    padding: 15px;
-}
-
-#preview table {
-    border-collapse: collapse;
-}
-
-#preview td,
-#preview th {
-    padding: 8px;
-    border: 1px solid #ddd;
+.markdown-body h1 {
+    margin: 20px 0 10px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: red;
 }

@@ -2,7 +2,7 @@
     <!-- 编辑器 -->
     <div class="editor-area">
         <h2 style="margin-top: 0;">📝Markdown 编辑器</h2>
-        <textarea id="markdown-input" placeholder="输入 Markdown 内容..." #markdown_input></textarea>
+        <textarea id="markdown-input" placeholder="输入 Markdown 内容..." (input)="parseMarkdown(markdown_input.value)" #markdown_input></textarea>
     </div>
 
     <!-- 预览 -->
@@ -14,6 +14,6 @@
             </svg>
             复制内容
         </button>
-        <div id="preview" #preview></div>
+        <markdown [data]="markdown_input.value" class="markdown-body"></markdown>
     </div>
 </div>

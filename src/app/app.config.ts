@@ -9,12 +9,24 @@ import * as heroiconsSolid from '@ng-icons/heroicons/solid';
 import { routes } from './app.routes';
 // 导入动画
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+// 导入markdown
+import { MARKED_OPTIONS, provideMarkdown } from 'ngx-markdown';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideAnimationsAsync(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
+    provideMarkdown({
+      markedOptions: {
+        provide: MARKED_OPTIONS,
+        useValue: {
+          gfm: true,
+          breaks: false,
+          pedantic: false,
+        },
+      },
+    }),
     importProvidersFrom(
       NgIconsModule.withIcons({
         ...bootstrapIcons,

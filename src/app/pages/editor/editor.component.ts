@@ -1,9 +1,16 @@
-import { Component, ViewChild, type AfterViewInit, type ElementRef } from '@angular/core';
+import { Component, ViewChild, ViewEncapsulation, type AfterViewInit, type ElementRef } from '@angular/core';
 import { marked } from 'marked';
+import { PreviewHtmlPipe } from '../../pipes/preview-html.pipe';
+import { MarkdownComponent } from 'ngx-markdown';
 
 @Component({
   selector: 'app-editor',
-  imports: [],
+  imports: [
+    PreviewHtmlPipe,
+    MarkdownComponent
+  ],
+  standalone: true,
+  encapsulation: ViewEncapsulation.Emulated,
   templateUrl: './editor.component.html',
   styleUrl: './editor.component.css'
 })
@@ -11,14 +18,19 @@ export class EditorComponent implements AfterViewInit {
   @ViewChild('markdown_input') editor!: ElementRef<HTMLTextAreaElement>;
   @ViewChild('preview') preview!: ElementRef<HTMLElement>;
 
+  previewHtmlStr = '<h1>hello</h1>';
+
   ngAfterViewInit(): void {
     marked.setOptions({
       breaks: true,
       gfm: true,
     });
-    this.editor.nativeElement.addEventListener('input', async () => {
-      this.preview.nativeElement.innerHTML = await marked.parse(this.editor.nativeElement.value);
-    });
+  }
+
+  async parseMarkdown(src: string) {
+    this.previewHtmlStr = `
+      <div class="markdown-body"> ${await marked.parse(src)} </div>
+    `;
   }
   // 复制功能
   async copyPreviewContent() {
