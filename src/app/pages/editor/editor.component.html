@@ -6,7 +6,7 @@
     </div>
 
     <!-- 预览 -->
-    <div class="preview-area">
+    <div class="preview-area" (scroll)="onScroll('viewer')">
         <button class="copy-btn" (click)="copyPreviewContent()">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M8 4v12h12V4H8z" stroke-linejoin="round" />

@@ -1,4 +1,4 @@
-import { Component, ViewChild, ViewEncapsulation, type AfterViewInit, type ElementRef } from '@angular/core';
+import { Component, signal, ViewChild, ViewEncapsulation, type AfterViewInit, type ElementRef } from '@angular/core';
 import { marked } from 'marked';
 import { MarkdownComponent } from 'ngx-markdown';
 
@@ -6,13 +6,14 @@ import { MarkdownComponent } from 'ngx-markdown';
   selector: 'app-editor',
   imports: [
     MarkdownComponent
-],
+  ],
   standalone: true,
   encapsulation: ViewEncapsulation.Emulated,
   templateUrl: './editor.component.html',
   styleUrl: './editor.component.css'
 })
 export class EditorComponent implements AfterViewInit {
+  private isSyncing = signal(false);
   @ViewChild('markdown_input') editor!: ElementRef<HTMLTextAreaElement>;
   @ViewChild('preview') preview!: ElementRef<HTMLElement>;
 
@@ -23,6 +24,29 @@ export class EditorComponent implements AfterViewInit {
       breaks: true,
       gfm: true,
     });
+  }
+
+  onScroll(source: 'editor' | 'viewer'): void {
+    if (this.isSyncing()) return; // 防止递归调用
+
+    this.isSyncing.set(true);
+
+    const editor = this.editor.nativeElement;
+    const viewer = this.preview.nativeElement;
+
+    const sourceElement = source === 'editor' ? editor : viewer;
+    const targetElement = source === 'editor' ? viewer : editor;
+
+    // 计算滚动比例
+    const scrollRatio =
+      sourceElement.scrollTop /
+      (sourceElement.scrollHeight - sourceElement.clientHeight);
+
+    // 应用滚动比例到目标元素
+    targetElement.scrollTop =
+      scrollRatio * (targetElement.scrollHeight - targetElement.clientHeight);
+
+    this.isSyncing.set(false);
   }
 
   async parseMarkdown(src: string) {

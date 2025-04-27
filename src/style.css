@@ -9,3 +9,26 @@
         margin-bottom: 15px;
     }
 }
+
+/* 删除代码块的用户名 */
+#preview>div>pre>code>span.command-line-prompt>span {
+    display: none;
+}
+
+/* 删除代码块左边的空白 */
+pre[class*="language-"].line-numbers {
+    padding-left: 0 !important;
+}
+
+
+/* 删除代码块上下的空白 */
+pre[class*="language-"] {
+    padding: 0 !important;
+}
+
+
+/* 去除markdown中文字的阴影 */
+code[class*="language-"],
+pre[class*="language-"] {
+    text-shadow: none !important;
+}
