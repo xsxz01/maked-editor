@@ -29,8 +29,50 @@ pre[class*="language-"].line-numbers {
 
 
 /* 删除代码块上下的空白 */
+/* 优化代码块样式 */
 pre[class*="language-"] {
-    padding: 0 !important;
+    background: #2d2d2d !important;
+    border-radius: 8px;
+    border: 1px solid #404040;
+    margin: 1em 0 !important;
+    overflow: auto;
+    position: relative;
+}
+
+/* 行号样式优化 */
+pre.line-numbers {
+    padding-left: 3.8em !important;  /* 恢复行号所需间距 */
+}
+
+.pre-line-number {
+    background: #363636;
+    border-right: 1px solid #404040;
+    color: #888;
+    min-width: 3em;
+    padding-right: 1em !important;
+}
+
+/* 代码高亮优化 */
+code[class*="language-"] {
+    color: #dcdcdc;
+    font-family: "Fira Code", "SF Mono", Menlo, monospace;
+    font-size: 0.9em;
+    line-height: 1.6;
+}
+
+.token.keyword { color: #cc99cd; }
+.token.string { color: #7ec699; }
+.token.comment { color: #999; }
+.token.function { color: #f08d49; }
+
+/* 横向滚动优化 */
+pre[class*="language-"]::-webkit-scrollbar {
+    height: 8px;
+    background-color: #2d2d2d;
+}
+pre[class*="language-"]::-webkit-scrollbar-thumb {
+    background: #404040;
+    border-radius: 4px;
 }
 
 
