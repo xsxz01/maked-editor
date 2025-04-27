@@ -1,14 +1,12 @@
 import { Component, ViewChild, ViewEncapsulation, type AfterViewInit, type ElementRef } from '@angular/core';
 import { marked } from 'marked';
-import { PreviewHtmlPipe } from '../../pipes/preview-html.pipe';
 import { MarkdownComponent } from 'ngx-markdown';
 
 @Component({
   selector: 'app-editor',
   imports: [
-    PreviewHtmlPipe,
     MarkdownComponent
-  ],
+],
   standalone: true,
   encapsulation: ViewEncapsulation.Emulated,
   templateUrl: './editor.component.html',

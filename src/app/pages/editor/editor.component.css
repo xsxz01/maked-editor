@@ -76,11 +76,3 @@ body {
 .copy-btn:active {
     transform: translateY(0);
 }
-
-/* 预览内容样式 */
-.markdown-body h1 {
-    margin: 20px 0 10px;
-    font-weight: 600;
-    line-height: 1.4;
-    color: red;
-}
